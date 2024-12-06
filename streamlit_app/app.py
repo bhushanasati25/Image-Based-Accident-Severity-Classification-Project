@@ -6,7 +6,7 @@ import numpy as np
 
 # Set page configuration
 st.set_page_config(
-    page_title="Image Classification",
+    page_title="Multiclass Object Classification in Autonomous Driving using the KITTI 3D Object Detection Dataset",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -55,7 +55,7 @@ st.sidebar.write(
 st.sidebar.info("Powered by TensorFlow and Streamlit.")
 
 # Main layout
-st.title("🚗 Image Classification with DenseNet121")
+st.title("Multiclass Object Classification in Autonomous Driving using the KITTI 3D Object Detection Dataset")
 st.write("Upload an image to classify it as either 'Human' or 'Vehicle'.")
 
 # File uploader
@@ -141,7 +141,7 @@ st.markdown(
     }
     </style>
     <div class="footer">
-        Built with ❤️ using TensorFlow and Streamlit.
+        Developed By RED Coder !! ❤️ 
     </div>
     """,
     unsafe_allow_html=True,
