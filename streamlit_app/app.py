@@ -114,7 +114,7 @@ st.markdown(
     }
     </style>
     <div class="footer">
-        Built with ❤️ using TensorFlow and Streamlit.
+        Developed By RED Coders !!
     </div>
     """,
     unsafe_allow_html=True,
