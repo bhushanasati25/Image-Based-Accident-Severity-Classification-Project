@@ -254,10 +254,10 @@ streamlit run app.py
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ### Contact Information
-- Team Member 1: [basati@stevens.edu]
-- Team Member 2: [rdabke@stevens.edu]
-- Team Member 3: [smadhavi1@stevens.edu]
-- Team Member 4: [asharma16@stevens.edu]
+- Bhushan Asati : [basati@stevens.edu]
+- Rujuta Dabke : [rdabke@stevens.edu]
+- Suyash Madhavi: [smadhavi1@stevens.edu]
+- Anirudha Sharma : [asharma16@stevens.edu]
 
 ### Repository
 Project Link: [https://github.com/bhushanasati25/Multiclass-Object-Classification-in-Autonomous-Driving.git](https://github.com/bhushanasati25/Multiclass-Object-Classification-in-Autonomous-Driving.git)
