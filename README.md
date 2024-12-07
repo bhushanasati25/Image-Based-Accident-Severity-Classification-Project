@@ -17,7 +17,7 @@
 ### Quick Start
 ```bash
 git clone https://github.com/bhushanasati25/Multiclass-Object-Classification-in-Autonomous-Driving.git
-cd Multiclass-Object-Classification-KITTI
+cd Multiclass-Object-Classification-in-Autonomous-Driving
 pip install -r requirements.txt
 ```
 
