@@ -1,18 +1,25 @@
-# Use Python base image
-FROM python:3.9-slim
+# Use Python 3.10 slim image
+FROM python:3.10-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy project files
-COPY . /app
+# Copy requirements file
+COPY requirements.txt /app/
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir -r streamlit_app/requirements.txt
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libgl1-mesa-glx && \
+    rm -rf /var/lib/apt/lists/*
 
-# Expose the Streamlit port
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire app directory
+COPY . /app/
+
+# Expose Streamlit port
 EXPOSE 8501
 
-# Run the Streamlit app
+# Command to run the Streamlit app
 CMD ["streamlit", "run", "streamlit_app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
