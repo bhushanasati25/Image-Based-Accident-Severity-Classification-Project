@@ -304,7 +304,7 @@ with tabs[0]:
         use_container_width=True
     )
 
-# About Tab
+# About Tab 
 with tabs[1]:
     st.title("📖 About This App")
     
