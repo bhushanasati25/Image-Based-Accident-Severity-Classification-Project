@@ -252,6 +252,7 @@ def display_team_member(name, role, image_path, linkedin, github):
 # Create Tabs for Navigation
 tabs = st.tabs(["🏠 Home", "ℹ️ About", "🔍 Model Status", "📸 Prediction", "👥 Team"])
 
+<<<<<<< HEAD
 from itertools import cycle
 
 # Home Tab
@@ -259,10 +260,16 @@ with tabs[0]:
     st.title("Multiclass Object Classification in Autonomous Driving")
     
     # Introductory Text
+=======
+# Home Tab
+with tabs[0]:
+    st.title("🚗 Multiclass Object Classification in Autonomous Driving")
+>>>>>>> 6cfd47997f1e6636d6967be674f1a193657cfb4c
     st.markdown(
         """
         Welcome to the **Multiclass Object Classification** app tailored for autonomous driving systems. 
         This application leverages a fine-tuned DenseNet121 model to accurately classify objects in images 
+<<<<<<< HEAD
         as either **Human** or **Vehicle**. By integrating state-of-the-art deep learning models, this app 
         provides robust and efficient solutions for identifying critical objects on the road.
 
@@ -302,11 +309,21 @@ with tabs[0]:
     st.image(
         images[current_index],
         use_container_width=True
+=======
+        as either **Human** or **Vehicle**. Upload an image to get started and see how our model performs!
+        """
+    )
+    st.image(
+        "assets/autonomous_driving.jpg",  # Ensure this image exists in the assets folder
+        caption="Autonomous Driving",
+        use_container_width=True,
+>>>>>>> 6cfd47997f1e6636d6967be674f1a193657cfb4c
     )
 
 # About Tab
 with tabs[1]:
     st.title("📖 About This App")
+<<<<<<< HEAD
     
     # Purpose Section
     with st.expander("🎯 Purpose"):
@@ -394,6 +411,27 @@ with tabs[1]:
             The model is optimized for urban scenarios with a focus on real-world traffic environments.
             """
         )
+=======
+    st.markdown(
+        """
+        ### Purpose
+        This application is designed to assist in the development of autonomous driving systems by providing 
+        accurate object classification. By distinguishing between humans and various vehicles, the system can 
+        make informed decisions to enhance safety and efficiency on the roads.
+
+        ### Features
+        - **Image Classification**: Classify uploaded images into 'Human' or 'Vehicle' categories.
+        - **Model Integration**: Utilizes a fine-tuned DenseNet121 model served via TensorFlow Serving.
+        - **User-Friendly Interface**: Intuitive design for easy navigation and interaction.
+
+        ### Technologies Used
+        - **Streamlit**: For building the interactive web interface.
+        - **TensorFlow**: For model development and serving.
+        - **Pillow (PIL)**: For image processing.
+        - **NumPy**: For numerical operations.
+        """
+    )
+>>>>>>> 6cfd47997f1e6636d6967be674f1a193657cfb4c
 
 # Model Status Tab
 with tabs[2]:
@@ -549,7 +587,11 @@ with tabs[4]:
             "name": "Anirudha Sharma",
             "role": "Data Scientist",
             "image": "assets/Anirudha.jpg",  
+<<<<<<< HEAD
             "linkedin": "https://www.linkedin.com/in/anirudh-sharma-650b93252",
+=======
+            "linkedin": "https://www.linkedin.com/in/anirudhasharma/",
+>>>>>>> 6cfd47997f1e6636d6967be674f1a193657cfb4c
             "github": "https://github.com/anirudhasharma",
         },
     ]
