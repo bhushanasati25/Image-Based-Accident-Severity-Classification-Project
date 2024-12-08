@@ -1,0 +1,45 @@
+# .github/workflows/ci.yml
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r streamlit_app/requirements.txt
+
+      - name: Run Tests
+        run: |
+          # Add your test commands here
+          echo "No tests specified"
+
+      - name: Build Docker Image
+        run: |
+          docker build -t your_dockerhub_username/multiclass-classification-kitti -f docker/Dockerfile .
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker Image
+        run: |
+          docker push your_dockerhub_username/multiclass-classification-kitti
