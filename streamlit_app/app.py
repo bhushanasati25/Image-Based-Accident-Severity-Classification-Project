@@ -254,6 +254,27 @@ tabs = st.tabs(["🏠 Home", "ℹ️ About", "🔍 Model Status", "📸 Predicti
 
 from itertools import cycle
 
+# Sidebar
+st.sidebar.title("About This App")
+st.sidebar.markdown(
+    """
+    This app uses a fine-tuned **DenseNet121** model to classify images into two categories:
+    
+    - **Human**: Includes Pedestrian, Person_sitting, and Cyclist.
+    - **Vehicle**: Includes Car, Truck, Van, and Tram.
+    """
+)
+
+# Add informational and styled footer to the sidebar
+st.sidebar.info("Powered by TensorFlow and Streamlit.")
+st.sidebar.markdown(
+    """
+    ---
+    For queries or feedback, reach out to our [GitHub repository](https://github.com/SUYASH-a17/Multiclass-Object-Classification-in-Autonomous-Driving).
+    """
+)
+
+
 # Home Tab
 with tabs[0]:
     st.title("Multiclass Object Classification in Autonomous Driving")
