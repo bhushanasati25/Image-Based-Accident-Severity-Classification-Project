@@ -266,7 +266,6 @@ st.sidebar.markdown(
 )
 
 # Add informational and styled footer to the sidebar
-st.sidebar.info("Powered by TensorFlow and Streamlit.")
 st.sidebar.markdown(
     """
     ---
