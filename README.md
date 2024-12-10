@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 2. Rujuta Dabke
    - Role: Data Scientist
-   - Models: EfficientNet, Vision Transformer
+   - Models: EfficientNet, Faster R - CNN
    - Contributions: Feature engineering, Visualization
 
 3. Suyash Madhavi
