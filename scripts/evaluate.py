@@ -1,53 +1,107 @@
+import os
+import argparse
 import numpy as np
+import json
 from tensorflow.keras.models import load_model
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, precision_score, recall_score, f1_score
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
-import pickle
+import pandas as pd
 
-# Load test data
-X_test = np.load("data/processed/X_images.npy")
-y_test = np.load("data/processed/y_labels.npy")
+def load_data(processed_dir):
+    splits = ['test']
+    data = {}
+    for split in splits:
+        X = np.load(os.path.join(processed_dir, split, 'X.npy'))
+        y = np.load(os.path.join(processed_dir, split, 'y.npy'))
+        data[split] = (X, y)
+        print(f"Loaded {split} set: {X.shape[0]} samples.")
+    
+    # Load label encoder
+    with open(os.path.join(processed_dir, 'label_encoder.json'), 'r') as f:
+        label_encoder = json.load(f)
+    class_names = label_encoder['classes']
+    return data, class_names
 
-# Class names
-with open("data/processed/label_encoder.pkl", "rb") as f:
-    label_encoder = pickle.load(f)
-class_names = label_encoder.classes_
-
-def evaluate_model(model_path, model_name):
-    print(f"Evaluating {model_name}")
+def evaluate_model(model_path, data, class_names):
     model = load_model(model_path)
-
-    # Predict on test data
-    predictions = model.predict(X_test)
-    y_pred = np.argmax(predictions, axis=1)
-
+    X_test, y_test = data['test']
+    y_pred_probs = model.predict(X_test)
+    y_pred = np.argmax(y_pred_probs, axis=1)
+    
     # Classification report
-    report = classification_report(y_test, y_pred, target_names=class_names)
-    print(report)
-
+    report = classification_report(y_test, y_pred, target_names=class_names, output_dict=True)
+    print(f"\nClassification Report for {os.path.basename(model_path)}:")
+    print(classification_report(y_test, y_pred, target_names=class_names))
+    
     # Confusion matrix
     cm = confusion_matrix(y_test, y_pred)
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=class_names, yticklabels=class_names)
-    plt.title(f"Confusion Matrix: {model_name}")
-    plt.xlabel("Predicted")
-    plt.ylabel("Actual")
-    plt.show()
+    plt.figure(figsize=(6,5))
+    sns.heatmap(cm, annot=True, fmt='d', xticklabels=class_names, yticklabels=class_names, cmap='Blues')
+    plt.title(f'Confusion Matrix - {os.path.basename(model_path)}')
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.tight_layout()
+    cm_plot_path = model_path.replace('.h5', '_confusion_matrix.png')
+    plt.savefig(cm_plot_path)
+    plt.close()
+    print(f"Confusion matrix plot saved to {cm_plot_path}")
+    
+    # Return metrics for comparison
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted')
+    
+    return {
+        'model': os.path.basename(model_path),
+        'precision': precision,
+        'recall': recall,
+        'f1_score': f1,
+        'classification_report': report
+    }
 
-# Evaluate each model
-model_paths = {
-    "ResNet-50": "models/resnet50_model.h5",
-    "EfficientNetB0": "models/efficientnetb0_model.h5",
-    "MobileNetV2": "models/mobilenetv2_model.h5",
-    "DenseNet121": "models/densenet121_model.h5",
-    "InceptionV3": "models/inceptionv3_model.h5",
-    "Vision Transformer (ViT)": "models/vit_model.h5",
-    "Fine-tuned MobileNetV2": "models/fine_tuned_mobilenetv2.h5",
-    "Fine-tuned MobileNetV2 (Focal)": "models/fine_tuned_mobilenetv2_focal.h5",
-    "Final DenseNet121": "models/final_densenet121_model.h5",
-}
+def main():
+    parser = argparse.ArgumentParser(description='Evaluate trained CNN models on test set.')
+    parser.add_argument('--processed_dir', type=str, default='data/processed/', help='Path to processed data')
+    parser.add_argument('--models_dir', type=str, default='models/', help='Path to trained models')
+    parser.add_argument('--output_dir', type=str, default='models/evaluation_reports/', help='Path to save evaluation reports')
+    
+    args = parser.parse_args()
+    
+    # Create output directory
+    os.makedirs(args.output_dir, exist_ok=True)
+    
+    # Load test data
+    data, class_names = load_data(args.processed_dir)
+    
+    # Get list of model files
+    model_files = [f for f in os.listdir(args.models_dir) if f.endswith('.h5')]
+    
+    # Evaluate each model
+    metrics = []
+    for model_file in model_files:
+        model_path = os.path.join(args.models_dir, model_file)
+        metric = evaluate_model(model_path, data, class_names)
+        metrics.append(metric)
+    
+    # Save metrics to CSV
+    metrics_df = pd.DataFrame(metrics)
+    metrics_csv_path = os.path.join(args.output_dir, 'models_performance.csv')
+    metrics_df.to_csv(metrics_csv_path, index=False)
+    print(f"All models' performance metrics saved to {metrics_csv_path}")
+    
+    # Plot comparison
+    plt.figure(figsize=(10,6))
+    sns.barplot(x='model', y='precision', data=metrics_df, label='Precision')
+    sns.barplot(x='model', y='recall', data=metrics_df, label='Recall', alpha=0.6)
+    sns.barplot(x='model', y='f1_score', data=metrics_df, label='F1-Score', alpha=0.4)
+    plt.ylabel('Score')
+    plt.title('Models Performance Comparison')
+    plt.legend()
+    comparison_plot_path = os.path.join(args.output_dir, 'models_performance_comparison.png')
+    plt.savefig(comparison_plot_path)
+    plt.close()
+    print(f"Models performance comparison plot saved to {comparison_plot_path}")
 
-for model_name, model_path in model_paths.items():
-    evaluate_model(model_path, model_name)
+if __name__ == '__main__':
+    main()

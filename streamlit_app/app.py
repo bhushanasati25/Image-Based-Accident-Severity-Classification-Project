@@ -252,44 +252,168 @@ def display_team_member(name, role, image_path, linkedin, github):
 # Create Tabs for Navigation
 tabs = st.tabs(["🏠 Home", "ℹ️ About", "🔍 Model Status", "📸 Prediction", "👥 Team"])
 
+from itertools import cycle
+
+# Sidebar
+st.sidebar.title("About This App")
+st.sidebar.markdown(
+    """
+    This app uses a fine-tuned **DenseNet121** model to classify images into two categories:
+    
+    - **Human**: Includes Pedestrian, Person_sitting, and Cyclist.
+    - **Vehicle**: Includes Car, Truck, Van, and Tram.
+    """
+)
+
+# Add informational and styled footer to the sidebar
+st.sidebar.markdown(
+    """
+    ---
+    For queries or feedback, reach out to our [GitHub repository](https://github.com/SUYASH-a17/Multiclass-Object-Classification-in-Autonomous-Driving).
+    """
+)
+
+
 # Home Tab
 with tabs[0]:
-    st.title("🚗 Multiclass Object Classification in Autonomous Driving")
+    st.title("Multiclass Object Classification in Autonomous Driving")
+    
+    # Introductory Text
     st.markdown(
         """
         Welcome to the **Multiclass Object Classification** app tailored for autonomous driving systems. 
         This application leverages a fine-tuned DenseNet121 model to accurately classify objects in images 
-        as either **Human** or **Vehicle**. Upload an image to get started and see how our model performs!
+        as either **Human** or **Vehicle**. By integrating state-of-the-art deep learning models, this app 
+        provides robust and efficient solutions for identifying critical objects on the road.
+
+        ### **Key Features**
+        - **Real-Time Image Analysis**: Upload an image, and the app instantly classifies it into predefined categories.
+        - **Deep Learning-Powered Models**: Utilizes a fine-tuned DenseNet121 model for superior accuracy.
+        - **Interactive Visualizations**: View confidence scores and predictions with dynamic bar and pie charts.
+        - **User-Friendly Design**: Intuitive and clean interface for seamless user experience.
         """
     )
+    
+    # Image Gallery Slideshow
+    st.markdown("### **Image Gallery: Autonomous Driving in Action**")
+    
+    # List of images and captions
+    images = [
+        "assets/autonomous_driving.jpg",
+        "assets/OIP.jpeg",
+        "assets/AISD.jpg",
+    ]
+    
+    # Initialize or retrieve the current image index
+    if "current_image_index" not in st.session_state:
+        st.session_state.current_image_index = 0
+
+    # Arrow Buttons for Navigation
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col1:
+        if st.button("← Previous"):
+            st.session_state.current_image_index = (st.session_state.current_image_index - 1) % len(images)
+    with col3:
+        if st.button("Next →"):
+            st.session_state.current_image_index = (st.session_state.current_image_index + 1) % len(images)
+
+    # Display the currently selected image
+    current_index = st.session_state.current_image_index
     st.image(
-        "assets/autonomous_driving.jpg",  # Ensure this image exists in the assets folder
-        caption="Autonomous Driving",
-        use_container_width=True,
+        images[current_index],
+        use_container_width=True
     )
 
-# About Tab
+# About Tab 
 with tabs[1]:
     st.title("📖 About This App")
-    st.markdown(
-        """
-        ### Purpose
-        This application is designed to assist in the development of autonomous driving systems by providing 
-        accurate object classification. By distinguishing between humans and various vehicles, the system can 
-        make informed decisions to enhance safety and efficiency on the roads.
+    
+    # Purpose Section
+    with st.expander("🎯 Purpose"):
+        st.markdown(
+            """
+            This application is designed to assist in the development of autonomous driving systems by providing 
+            accurate object classification. By distinguishing between humans and various vehicles, the system can 
+            make informed decisions to enhance safety and efficiency on the roads.
 
-        ### Features
-        - **Image Classification**: Classify uploaded images into 'Human' or 'Vehicle' categories.
-        - **Model Integration**: Utilizes a fine-tuned DenseNet121 model served via TensorFlow Serving.
-        - **User-Friendly Interface**: Intuitive design for easy navigation and interaction.
+            ### Key Benefits
+            - **Enhanced Safety**: Enables early detection of pedestrians and vehicles to prevent accidents.
+            - **Decision Support**: Helps autonomous systems make better traffic navigation decisions.
+            - **Scalability**: Easily extendable to include additional object classes, such as traffic signs or road obstacles.
+            """
+        )
+    
+    # Features Section
+    with st.expander("⚙️ Features"):
+        st.markdown(
+            """
+            ### Features
+            - **Image Classification**: 
+              Upload images to classify them into 'Human' or 'Vehicle' categories using advanced machine learning techniques.
+            - **Model Integration**: 
+              Utilizes a fine-tuned DenseNet121 model served via TensorFlow Serving for real-time classification.
+            - **Visual Insights**: 
+              View confidence scores, predictions, and data visualizations in an interactive format.
+            - **User-Friendly Interface**: 
+              Intuitive design with tabs, dropdowns, and easy navigation to provide a seamless user experience.
 
-        ### Technologies Used
-        - **Streamlit**: For building the interactive web interface.
-        - **TensorFlow**: For model development and serving.
-        - **Pillow (PIL)**: For image processing.
-        - **NumPy**: For numerical operations.
-        """
-    )
+            ### Unique Aspects
+            - Supports real-time object classification.
+            - Built for scalability with the ability to adapt to additional object types.
+            - Includes both interactive visualizations and confidence score distributions.
+            """
+        )
+    
+    # Technologies Used Section
+    with st.expander("🛠️ Technologies Used"):
+        st.markdown(
+            """
+            ### Technologies Used
+            - **Streamlit**: 
+              Framework for building an interactive and responsive web application.
+            - **TensorFlow**: 
+              Used to develop and serve the fine-tuned DenseNet121 model.
+            - **Pillow (PIL)**: 
+              For efficient image processing and resizing.
+            - **NumPy**: 
+              For handling numerical operations efficiently.
+            - **Plotly**: 
+              To create interactive charts and visualizations for predictions.
+            """
+        )
+
+    # Model Information Section
+    with st.expander("🤖 About the Model"):
+        st.markdown(
+            """
+            ### DenseNet121 Model
+            - **Base Architecture**: 
+              DenseNet121, a convolutional neural network that connects each layer to every other layer in a feed-forward manner.
+            - **Fine-Tuning**: 
+              The model was fine-tuned on the KITTI dataset for enhanced performance in autonomous driving scenarios.
+            - **Key Features**:
+              - Compact architecture that reduces the number of parameters while maintaining high accuracy.
+              - Excellent performance on object detection and classification tasks.
+              - Robust to overfitting due to dense connections between layers.
+            
+            ### Model Workflow
+            1. **Image Preprocessing**: 
+               Input images are resized to 224x224 and normalized.
+            2. **Feature Extraction**: 
+               DenseNet121 extracts hierarchical features from the image.
+            3. **Classification Head**: 
+               The final layer predicts probabilities for the 'Human' and 'Vehicle' categories.
+            4. **Serving via TensorFlow Serving**: 
+               Enables real-time predictions with high reliability.
+
+            ### Performance Metrics
+            - **Accuracy**: 85% on the test set.
+            - **Precision and Recall**: Evaluated for both 'Human' and 'Vehicle' categories.
+            - **Confusion Matrix**: Highlights areas of strength and improvement.
+
+            The model is optimized for urban scenarios with a focus on real-world traffic environments.
+            """
+        )
 
 # Model Status Tab
 with tabs[2]:
@@ -445,7 +569,7 @@ with tabs[4]:
             "name": "Anirudha Sharma",
             "role": "Data Scientist",
             "image": "assets/Anirudha.jpg",  
-            "linkedin": "https://www.linkedin.com/in/anirudhasharma/",
+            "linkedin": "https://www.linkedin.com/in/anirudh-sharma-650b93252",
             "github": "https://github.com/anirudhasharma",
         },
     ]
