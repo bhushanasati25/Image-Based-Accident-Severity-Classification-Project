@@ -86,9 +86,9 @@ pip install -r requirements.txt
 
 ## Dataset Links
 
-### Kaggle_dataset: https://www.cvlibs.net/datasets/kitti/
+- Kaggle dataset: https://www.cvlibs.net/datasets/kitti/
 
-### KITTI_dataset: https://www.kaggle.com/datasets/garymk/kitti-3d-object-detection-dataset
+- KITTI dataset: https://www.kaggle.com/datasets/garymk/kitti-3d-object-detection-dataset
 
 ## Technical Details
 
