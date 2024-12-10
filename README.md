@@ -115,42 +115,42 @@ Multiclass-Object-Classification-KITTI/
 1. **ResNet-50**
    - Architecture: Deep residual network
    - Features: Skip connections, Batch normalization
-   - Performance: 89% accuracy
+   - Performance: 98% accuracy
 
-2. **EfficientNet**
+2. **EfficientNetB0**
    - Architecture: Compound scaling
    - Features: Balanced scaling, Optimized architecture
-   - Performance: 91% accuracy
+   - Performance: 16% accuracy
 
 3. **MobileNetV2**
    - Architecture: Lightweight CNN
    - Features: Inverted residuals, Linear bottlenecks
-   - Performance: 87% accuracy
+   - Performance: 99% accuracy
 
-4. **Vision Transformer (ViT)**
-   - Architecture: Transformer-based
-   - Features: Attention mechanisms, Patch-based processing
-   - Performance: 90% accuracy
+4. **Faster R CNN**
+   - Architecture: Region Proposal Network (RPN)
+   - Features: Region Proposal Network
+   - Performance: 89% accuracy
 
 5. **Inception-v3**
    - Architecture: Multi-scale processing
    - Features: Factorized convolutions, Auxiliary classifiers
-   - Performance: 88% accuracy
+   - Performance: 98% accuracy
 
 6. **DenseNet-121**
    - Architecture: Dense connectivity
    - Features: Fine-tuned for detailed classification
-   - Performance: 92% accuracy
+   - Performance: 96% accuracy
 
 7. **XGBoost**
    - Type: Gradient boosting
    - Features: Feature importance, Handles imbalanced data
-   - Performance: 85% accuracy
+   - Performance: 98% accuracy
 
 8. **Random Forest**
    - Type: Ensemble learning
    - Features: Feature selection, Parallel processing
-   - Performance: 83% accuracy
+   - Performance: 98% accuracy
 
 ### Technical Stack
 - Python 3.8+
