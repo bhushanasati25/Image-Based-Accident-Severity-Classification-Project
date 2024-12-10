@@ -265,14 +265,6 @@ st.sidebar.markdown(
     """
 )
 
-# Add informational and styled footer to the sidebar
-st.sidebar.markdown(
-    """
-    ---
-    For queries or feedback, reach out to our [GitHub repository](https://github.com/SUYASH-a17/Multiclass-Object-Classification-in-Autonomous-Driving).
-    """
-)
-
 
 # Home Tab
 with tabs[0]:
