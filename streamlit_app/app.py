@@ -566,11 +566,11 @@ with tabs[4]:
             "github": "https://github.com/SUYASH-a17",
         },
         {
-            "name": "Anirudha Sharma",
+            "name": "Anirudh Sharma",
             "role": "Data Scientist",
             "image": "assets/Anirudha.jpg",  
             "linkedin": "https://www.linkedin.com/in/anirudh-sharma-650b93252",
-            "github": "https://github.com/anirudhasharma",
+            "github": "https://github.com/anirudhksharma",
         },
     ]
 
