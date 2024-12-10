@@ -559,7 +559,7 @@ with tabs[4]:
         },
         {
             "name": "Anirudh Sharma",
-            "role": "Data Scientist",
+            "role": "ML Enthusiast",
             "image": "assets/Anirudha.jpg",  
             "linkedin": "https://www.linkedin.com/in/anirudh-sharma-650b93252",
             "github": "https://github.com/anirudhksharma",
