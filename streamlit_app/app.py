@@ -399,7 +399,7 @@ with tabs[1]:
                Enables real-time predictions with high reliability.
 
             ### Performance Metrics
-            - **Accuracy**: 85% on the test set.
+            - **Accuracy**: 96% on the test set.
             - **Precision and Recall**: Evaluated for both 'Human' and 'Vehicle' categories.
             - **Confusion Matrix**: Highlights areas of strength and improvement.
 
