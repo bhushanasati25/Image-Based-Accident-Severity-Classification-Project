@@ -29,8 +29,8 @@ pip install -r requirements.txt
 - Provide comprehensive model comparison and analysis
 
 ### Classification Categories
-1. **Multi-class Classification** (DenseNet-121 Specialized)**
-   - Human (Pedestrian, Person_sitting, Cyclist)
+1. **Multi-class Classification** (DenseNet-121 Specialized)
+   - Human (Pedestrian, Cyclist)
    - Vehicle (Car, Truck, Van, Tram)
 
 ## Team Members
@@ -38,20 +38,20 @@ pip install -r requirements.txt
 ### Project Team
 1. Bhushan Asati
    - Role: Data Scientist
-   - Models: DenseNet-121, MobileNetV2 
+   - Models: DenseNet121, MobileNetV2 
    - Contributions: Data preprocessing, Feature Engineering, Model training, Model Optimiztion, Deployment
 
 2. Rujuta Dabke
    - Role: Data Scientist
-   - Models: EfficientNet, Vision Transformer
+   - Models: EfficientNet, Faster R-CNN
    - Contributions: Feature engineering, Visualization
 
 3. Suyash Madhavi
    - Role: Data Scientist
-   - Models: Inception-v3, ResNet-50
+   - Models: Inception-v3, ResNet50
    - Contributions: Model optimization, Performance analysis
 
-4. Anirudha Sharma
+4. Anirudh Sharma
    - Role: Data Scientist
    - Models: XGBoost, Random Forest
    - Contributions: Traditional ML implementation, Evaluation metrics
@@ -119,45 +119,45 @@ Multiclass-Object-Classification-KITTI/
 
 ### Models Implemented
 
-1. **ResNet-50**
+1. **ResNet50**
    - Architecture: Deep residual network
    - Features: Skip connections, Batch normalization
-   - Performance: 89% accuracy
+   - Performance: 98% accuracy
 
-2. **EfficientNet**
+2. **EfficientNetB0**
    - Architecture: Compound scaling
    - Features: Balanced scaling, Optimized architecture
-   - Performance: 91% accuracy
+   - Performance: 16% accuracy
 
 3. **MobileNetV2**
    - Architecture: Lightweight CNN
    - Features: Inverted residuals, Linear bottlenecks
-   - Performance: 87% accuracy
+   - Performance: 99% accuracy
 
-4. **Vision Transformer (ViT)**
-   - Architecture: Transformer-based
-   - Features: Attention mechanisms, Patch-based processing
-   - Performance: 90% accuracy
+4. **Faster R-CNN**
+   - Architecture: Region Proposal Network (RPN)
+   - Features: Region Proposal Network
+   - Performance: 89% accuracy
 
 5. **Inception-v3**
    - Architecture: Multi-scale processing
    - Features: Factorized convolutions, Auxiliary classifiers
-   - Performance: 88% accuracy
+   - Performance: 98% accuracy
 
-6. **DenseNet-121**
+6. **DenseNet121**
    - Architecture: Dense connectivity
    - Features: Fine-tuned for detailed classification
-   - Performance: 92% accuracy
+   - Performance: 96% accuracy
 
 7. **XGBoost**
    - Type: Gradient boosting
    - Features: Feature importance, Handles imbalanced data
-   - Performance: 85% accuracy
+   - Performance: 98% accuracy
 
 8. **Random Forest**
    - Type: Ensemble learning
    - Features: Feature selection, Parallel processing
-   - Performance: 83% accuracy
+   - Performance: 98% accuracy
 
 ### Technical Stack
 - Python 3.8+
@@ -224,16 +224,17 @@ streamlit run app.py
 
 ### Model Comparison
 
-| Model          | Accuracy | F1-Score | Training Time | GPU Memory |
-|----------------|----------|----------|---------------|------------|
-| ResNet-50      | 0.89     | 0.88     | 4h 30m       | 8GB         |
-| EfficientNet   | 0.91     | 0.90     | 5h 15m       | 6GB         |
-| MobileNetV2    | 0.87     | 0.86     | 3h 45m       | 4GB         |
-| ViT            | 0.90     | 0.89     | 6h 30m       | 12GB        |
-| Inception-v3   | 0.88     | 0.87     | 5h 00m       | 8GB         |
-| DenseNet-121   | 0.98     | 0.96     | 7h 45m       | 18GB        |
-| XGBoost        | 0.85     | 0.84     | 1h 30m       | CPU         |
-| Random Forest  | 0.83     | 0.82     | 45m          | CPU         |
+| Model           | Accuracy | Human Precision | Human Recall | Human F1 | Vehicle Precision | Vehicle Recall | Vehicle F1 |
+|-----------------|----------|------------------|--------------|----------|--------------------|-----------------|------------|
+| **ResNet50**        | 0.98     | 0.88             | 0.99         | 0.93     | 1.00               | 0.98            | 0.99       |
+| **EfficientNetB0**  | 0.16     | 0.15             | 0.99         | 0.26     | 0.95               | 0.02            | 0.04       |
+| **MobileNetV2**     | 0.99     | 0.95             | 0.98         | 0.96     | 1.00               | 0.99            | 0.99       |
+| **DenseNet121**     | 0.96     | 0.77             | 0.99         | 0.87     | 1.00               | 0.95            | 0.97       |
+| **InceptionV3**     | 0.98     | 0.92             | 0.93         | 0.92     | 0.99               | 0.99            | 0.99       |
+| **Random Forest**   | 0.98     | 0.96             | 0.88         | 0.92     | 0.98               | 0.99            | 0.99       |
+| **Faster R-CNN**    | 0.89     | 0.64             | 0.60         | 0.62     | 0.93               | 0.94            | 0.94       |
+| **XGBoost**         | 0.98     | 0.96             | 0.94         | 0.95     | 0.99               | 0.99            | 0.99       |
+
 
 ### Key Findings
 1. DenseNet-121 showed best performance for detailed classification
@@ -264,7 +265,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Bhushan Asati : [basati@stevens.edu]
 - Rujuta Dabke : [rdabke@stevens.edu]
 - Suyash Madhavi: [smadhavi1@stevens.edu]
-- Anirudha Sharma : [asharma16@stevens.edu]
+- Anirudh Sharma : [asharma16@stevens.edu]
 
 ### Repository
 Project Link: [https://github.com/bhushanasati25/Multiclass-Object-Classification-in-Autonomous-Driving.git](https://github.com/bhushanasati25/Multiclass-Object-Classification-in-Autonomous-Driving.git)
