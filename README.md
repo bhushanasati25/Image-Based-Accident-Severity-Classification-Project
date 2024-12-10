@@ -28,8 +28,8 @@ pip install -r requirements.txt
 - Provide comprehensive model comparison and analysis
 
 ### Classification Categories
-1. **Multi-class Classification** (DenseNet-121 Specialized)**
-   - Human (Pedestrian, Person_sitting, Cyclist)
+1. **Multi-class Classification** (DenseNet-121 Specialized)
+   - Human (Pedestrian, Cyclist)
    - Vehicle (Car, Truck, Van, Tram)
 
 ## Team Members
@@ -37,17 +37,17 @@ pip install -r requirements.txt
 ### Project Team
 1. Bhushan Asati
    - Role: Data Scientist
-   - Models: DenseNet-121, MobileNetV2 
+   - Models: DenseNet121, MobileNetV2 
    - Contributions: Data preprocessing, Feature Engineering, Model training, Model Optimiztion, Deployment
 
 2. Rujuta Dabke
    - Role: Data Scientist
-   - Models: EfficientNet, Faster R - CNN
+   - Models: EfficientNet, Faster R-CNN
    - Contributions: Feature engineering, Visualization
 
 3. Suyash Madhavi
    - Role: Data Scientist
-   - Models: Inception-v3, ResNet-50
+   - Models: Inception-v3, ResNet50
    - Contributions: Model optimization, Performance analysis
 
 4. Anirudh Sharma
@@ -112,7 +112,7 @@ Multiclass-Object-Classification-KITTI/
 
 ### Models Implemented
 
-1. **ResNet-50**
+1. **ResNet50**
    - Architecture: Deep residual network
    - Features: Skip connections, Batch normalization
    - Performance: 98% accuracy
@@ -127,7 +127,7 @@ Multiclass-Object-Classification-KITTI/
    - Features: Inverted residuals, Linear bottlenecks
    - Performance: 99% accuracy
 
-4. **Faster R CNN**
+4. **Faster R-CNN**
    - Architecture: Region Proposal Network (RPN)
    - Features: Region Proposal Network
    - Performance: 89% accuracy
@@ -137,7 +137,7 @@ Multiclass-Object-Classification-KITTI/
    - Features: Factorized convolutions, Auxiliary classifiers
    - Performance: 98% accuracy
 
-6. **DenseNet-121**
+6. **DenseNet121**
    - Architecture: Dense connectivity
    - Features: Fine-tuned for detailed classification
    - Performance: 96% accuracy
